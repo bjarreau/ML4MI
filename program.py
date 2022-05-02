@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 import pandas as pd
 import sklearn
 import pickle
@@ -33,6 +34,13 @@ elif method == 'DT':
 ##Read in input and predict with model
 inputs = pd.read_csv(inp).to_numpy()    
 output = model.predict(inputs)
+
+#Tranform ANN output to classes to match other models
+if method == 'ANN':
+    classes = np.array([0, 1])
+    output = np.array([*map(np.argmax, output)])
+
+
 print(output)
 
 
