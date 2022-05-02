@@ -4,25 +4,37 @@ import sklearn
 import pickle
 import sys
 from os import listdir
+import argparse
 
+###Adding command line tags for more argument transparency
+parser = argparse.ArgumentParser("Build, test, and use ML models")
+parser.add_argument("-m", "--model")
+parser.add_argument("-i", "--input")
+args = parser.parse_args()    
+                    
 
-method, inp = sys.argv[1], sys.argv[2]
+method, inp = args.model, args.input
 files = listdir()
 
+#Ensure model provided is available for this program
 if method not in ["ANN", "SVM", "DT"]:
     raise ValueError("Please specify model as 'ANN', 'SVM', or 'DT'")
 
-if method == 'ANN':
-    model = tf.keras.models.load_model('ANN')
-elif method == 'SVM':
-    model = pickle.load(open('SVM', 'rb'))
-elif method == 'DT':
-    model = pickle.load(open('DT', 'rb'))
+model_loc = f"MODEL/{method}"    
 
-    
+#Load model based on --model tag
+if method == 'ANN':
+    model = tf.keras.models.load_model(model_loc)
+elif method == 'SVM':
+    model = pickle.load(open(model_loc, 'rb'))
+elif method == 'DT':
+    model = pickle.load(open(model_loc, 'rb'))
+
+##Read in input and predict with model
 inputs = pd.read_csv(inp).to_numpy()    
-    
 output = model.predict(inputs)
+print(output)
+
 
 
 
