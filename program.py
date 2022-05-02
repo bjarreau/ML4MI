@@ -3,10 +3,11 @@ import pandas as pd
 import sklearn
 import pickle
 import sys
-
+from os import listdir
 
 
 method, inp = sys.argv[1], sys.argv[2]
+files = listdir()
 
 if method not in ["ANN", "SVM", "DT"]:
     raise ValueError("Please specify model as 'ANN', 'SVM', or 'DT'")
@@ -22,7 +23,8 @@ elif method == 'DT':
 inputs = pd.read_csv(inp).to_numpy()    
     
 output = model.predict(inputs)
-print(output)
+
+
 
 
 
