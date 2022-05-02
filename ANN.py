@@ -5,7 +5,8 @@ import pickle
 import sys
 
 
-method = sys.argv[1]
+
+method, inp = sys.argv[1], sys.argv[2]
 
 if method not in ["ANN", "SVM", "DT"]:
     raise ValueError("Please specify model as 'ANN', 'SVM', or 'DT'")
@@ -17,12 +18,11 @@ elif method == 'SVM':
 elif method == 'DT':
     model = pickle.load(open('DT', 'rb'))
 
-
-
-
-
-
-
+    
+inputs = pd.read_csv(inp).to_numpy()    
+    
+output = model.predict(inputs)
+print(output)
 
 
 
