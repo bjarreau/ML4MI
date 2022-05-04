@@ -71,13 +71,20 @@ plt.figure(figsize=(20,20))
 sns.heatmap(corelationBetweenCols, vmax=1, square=True, annot=True, cmap='cubehelix')
 plt.title('Correlation between different features')
 
-samples = data.drop(["Label"], axis=1)
-labels = data.Label
+#Accept a pandas dataframe pInput and a set of Training, Validation, and Test ratios
+#Randomly sample dataframe without replacement to create the datasets
+def getData(pInput, pRatio):
+    #first we shuffle the data
+    shuffle = pInput.sample(frac=1, random_state=42)
 
-X_train, X_test, y_train, y_test = model_selection.train_test_split(samples, labels, train_size=0.70,test_size=0.30, random_state=42)
-X_train['Label'] = pd.Series(y_train, index=X_train.index)
-X_test['Label'] = pd.Series(y_test, index=X_test.index)
+    #Then we create indices to split on
+    indices = [int(pRatio[0]*len(shuffle)), int((pRatio[0] + pRatio[1])*len(shuffle))]
 
+    #Now we split
+    dTrn, dVal, dTst =  np.split(shuffle, indices)
+    return dTrn, dVal, dTst
+
+X_train, X_validation, X_test = getData(data, (0.6, 0.2, 0.2))
 X_train.to_csv(".\INPUT\TRAIN\X_train.csv", index=False)
 X_test.to_csv(".\INPUT\TEST\X_test.csv", index=False)
-
+X_validation.to_csv(".\INPUT\VALIDATION\X_validation.csv", index=False)
