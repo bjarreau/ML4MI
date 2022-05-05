@@ -40,24 +40,39 @@ Each model can be configured to use a new input and output directory at the top 
 
 The ANN model can additionally be reconfigured to toggle early stopping on or off, change the activation function, or update the learning rate.
 
+
 earlystop = True
+
 activation = "relu"
+
 learningrate = 0.00025
+
 output = "/content/ML4MI/OUTPUT/"
+
 input = "/content/ML4MI/INPUT/"
+
 
 The Decision Tree model can be reconfigured to change the criteria and the maximum depth.
 
+
 criteria = "entropy" # criteria to use for Decision Tree: entropy or gini
+
 depth = 5 # cutoff depth of tree
+
 output = "/content/ML4MI/OUTPUT"
+
 input = "/content/ML4MI/INPUT/DT"
+
 
 The SVM can be reconfigured to change the kernel and the regularization (C value). 
 
+
 kernel = "linear"  # kernel type for SVM: linear, poly, rbf, sigmoid, precomputed
+
 regularization = 1.0 # regularization amount for SVM (must be positive)
+
 output = "/content/ML4MI/OUTPUT/"
+
 input = "/content/ML4MI/INPUT/"
 
 # Model Loading
