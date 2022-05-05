@@ -9,22 +9,35 @@ To Create a new model use the model_builder.py script or for a more visual inter
 
 ## Model_Builder.py
 -h can be used in model_builder.py to see the list of command line options
+
 -m should be used to specify the model to run: DT, ANN, SVM
+
 -i should be used to specify the input path to directory with TRAIN, TEST, VALIDATION directories
+
 -o should be used to specify the path to place output artifacts, needs METRICS and MODEL subdirs
+
 -c can be used when the model is DT to specify the criteria
+
 -d can be used when the model is DT to specify the depth
+
 -k can be used when the model is SVM to specify the kernel type: linear, poly, rbf, sigmoid, precomputed
+
 -r can be used when the model is SVM to specify the C-value (regularization)
+
 -s can be used when the model is ANN to set earlystopping to "true", to omit early stopping, do not add this flag
+
 -a can be used when the model is ANN to specify an activation function: relu, sigmoid, tanh
+
 -l can be used when the model is ANN to specify a learning rate
 
 
 ## Model_Builder.ipynb
 The last 3 sections correspond to each of the models. 
+
 The notebook pulls down the data from the repo at the start of the run.
+
 Each model can be configured to use a new input and output directory at the top of its section.
+
 The ANN model can additionally be reconfigured to toggle early stopping on or off, change the activation function, or update the learning rate.
 
 earlystop = True
